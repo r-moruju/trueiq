@@ -448,6 +448,7 @@ let currentQuestion = 0;
 let score = 0;
 let timer = 30;
 let interval;
+let totalTimeTaken = 0;
 
 let categoryScores = {
   Math: 0,
@@ -509,6 +510,7 @@ function nextQuestion() {
 function finishQuiz() {
   localStorage.setItem("iqScore", score);
   localStorage.setItem("categoryScores", JSON.stringify(categoryScores));
+  localStorage.setItem("totalTimeTaken", totalTimeTaken);
   window.location.href = "results.html";
 }
 

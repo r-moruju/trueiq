@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,57 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your TrueIQ Results</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Poppins', sans-serif; }
-    .fade-in { animation: fadeIn 0.5s ease-in; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 </head>
 <body class="bg-gradient-to-tr from-blue-50 via-white to-purple-100 min-h-screen flex items-center justify-center">
-
-  <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md text-center fade-in">
+  <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md text-center">
     <h1 class="text-3xl font-bold text-purple-700 mb-4">Your IQ Test Results</h1>
     <p id="scoreText" class="text-lg mb-2 text-gray-700">Loading score...</p>
-
     <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
       <div id="scoreBar" class="bg-purple-600 h-4 rounded-full transition-all" style="width: 0%"></div>
     </div>
-
-    <p id="feedback" class="text-xl font-semibold mb-6 text-indigo-800"></p>
-
-    <button onclick="window.location.href='test.html'" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition">
-      Retake the Test
-    </button>
-    <button onclick="window.location.href='https://buy.stripe.com/test_8x2fZa5v6cPJ3Kybee0x200'" class="bg-yellow-500 text-white px-4 py-2 rounded mt-4">
-           Unlock Full Breakdown (4.99$)
-    </button>
+    <p id="iqText" class="text-xl font-semibold mb-2 text-indigo-800"></p>
+    <div class="flex justify-center gap-4 mt-4">
+      <button onclick="window.location.href='test.html'" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition">
+        Retake Test
+      </button>
+      <button onclick="window.location.href='breakdown.html'" class="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">
+        View Breakdown
+      </button>
+    </div>
   </div>
 
   <script>
-    const score = localStorage.getItem("iqScore") || 0;
-    const percent = Math.round((score / 15) * 100);
-    const scoreText = document.getElementById("scoreText");
-    const scoreBar = document.getElementById("scoreBar");
-    const feedback = document.getElementById("feedback");
+    function calculateIQ(correctAnswers, totalTime) {
+      const baseScore = (correctAnswers / 15) * 50 + 75;
+      const timePerQuestion = totalTime / correctAnswers;
+      let speedBoost = 0;
 
-    scoreText.textContent = `You answered ${score} out of 15 correctly.`;
-    scoreBar.style.width = `${percent}%`;
+      if (timePerQuestion < 8) speedBoost = 10;
+      else if (timePerQuestion < 12) speedBoost = 5;
 
-    if (score >= 13) {
-      feedback.textContent = "🧠 Genius Level – Exceptional reasoning!";
-    } else if (score >= 10) {
-      feedback.textContent = "💡 High IQ – Great job!";
-    } else if (score >= 6) {
-      feedback.textContent = "🙂 Average IQ – Room to grow.";
-    } else {
-      feedback.textContent = "🔍 Below Average – Keep practicing!";
+      return Math.round(Math.min(baseScore + speedBoost, 160));
     }
-  </script>
 
+    const score = parseInt(localStorage.getItem("iqScore") || "0");
+    const totalTime = parseInt(localStorage.getItem("totalTimeTaken") || "0");
+    const iq = calculateIQ(score, totalTime);
+    const percent = Math.round((score / 15) * 100);
+
+    document.getElementById("scoreText").textContent = `You answered ${score} out of 15 correctly.`;
+    document.getElementById("scoreBar").style.width = `${percent}%`;
+    document.getElementById("iqText").textContent = `🎓 Estimated IQ: ${iq}`;
+  </script>
 </body>
 </html>
