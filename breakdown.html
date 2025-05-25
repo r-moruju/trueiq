@@ -69,8 +69,8 @@
       const name = document.getElementById("userName").value.trim();
       const email = document.getElementById("userEmail").value.trim();
       const score = parseInt(localStorage.getItem("iqScore") || 0);
-const totalTime = parseInt(localStorage.getItem("totalTimeTaken") || 0);
-const iqScore = calculateIQ(score, totalTime);
+      const totalTime = parseInt(localStorage.getItem("totalTimeTaken") || 0);
+      const iqScore = calculateIQ(score, totalTime);
       const date = new Date().toLocaleDateString();
 
       if (!name || !email) {
