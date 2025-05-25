@@ -442,7 +442,7 @@ const allQuestions = [
   }
 ];
 
-const questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 25);
+const questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
 
 let currentQuestion = 0;
 let score = 0;
@@ -474,7 +474,7 @@ function showQuestion() {
 
   q.options.forEach((option, index) => {
     const btn = document.createElement("button");
-    btn.textContent = option;
+    btn.innerHTML = option;
     btn.className = "bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded m-2 shadow hover:scale-105 transition-all";
     btn.onclick = () => checkAnswer(index);
     optionsEl.appendChild(btn);
