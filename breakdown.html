@@ -7,6 +7,7 @@
   <title>TrueIQ – Detailed Breakdown</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-8">
   <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-2xl">
@@ -15,7 +16,18 @@
 
     <canvas id="categoryChart" class="mb-6"></canvas>
 
-    <div id="feedback" class="text-center text-lg text-gray-700"></div>
+    <div id="feedback" class="text-center text-lg text-gray-700 mb-4"></div>
+
+    <div class="border-t border-gray-200 pt-4 mt-6">
+      <h2 class="text-xl font-semibold mb-2 text-center">🎓 Get Your Certificate</h2>
+      <div class="flex flex-col items-center gap-2">
+        <input type="text" id="userName" placeholder="Enter your full name" class="border p-2 rounded w-full max-w-sm" />
+        <input type="email" id="userEmail" placeholder="Enter your email" class="border p-2 rounded w-full max-w-sm" />
+        <button onclick="generateCertificate()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+          📄 Download Certificate
+        </button>
+      </div>
+    </div>
 
     <div class="mt-6 text-center">
       <button onclick="window.location.href='index.html'" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🏠 Back to Home</button>
@@ -24,35 +36,73 @@
 
   <script>
     const rawData = localStorage.getItem("categoryScores");
-    const data = rawData ? JSON.parse(rawData) : {};
-
+    const data = rawData ? JSON.parse(rawData) : {{}};
     const labels = Object.keys(data);
     const values = Object.values(data);
 
     const ctx = document.getElementById("categoryChart").getContext("2d");
-    new Chart(ctx, {
+    new Chart(ctx, {{
       type: "bar",
-      data: {
+      data: {{
         labels: labels,
-        datasets: [{
+        datasets: [{{
           label: "Correct Answers by Category",
           data: values,
           backgroundColor: "#6366f1"
-        }]
-      },
-      options: {
+        }}]
+      }},
+      options: {{
         responsive: true,
-        scales: {
-          y: {
+        scales: {{
+          y: {{
             beginAtZero: true,
-            ticks: { stepSize: 1 }
-          }
-        }
-      }
-    });
+            ticks: {{ stepSize: 1 }}
+          }}
+        }}
+      }}
+    }});
 
     const maxCategory = labels[values.indexOf(Math.max(...values))];
-    document.getElementById("feedback").textContent = `🧠 Your strongest area was: ${maxCategory}`;
+    document.getElementById("feedback").textContent = `🧠 Your strongest area was: ${{maxCategory}}`;
+
+    async function generateCertificate() {{
+      const name = document.getElementById("userName").value.trim();
+      const email = document.getElementById("userEmail").value.trim();
+      const score = localStorage.getItem("iqScore") || 0;
+      const date = new Date().toLocaleDateString();
+
+      if (!name || !email) {{
+        alert("Please enter both name and email.");
+        return;
+      }}
+
+      const {{ jsPDF }} = window.jspdf;
+      const doc = new jsPDF();
+
+      const logo = new Image();
+      logo.src = "{logo_data_uri}";
+      logo.onload = function () {{
+        doc.addImage(logo, "PNG", 150, 10, 40, 20);
+
+        doc.setFontSize(22);
+        doc.text("TrueIQ Certificate", 70, 40);
+        doc.setFontSize(16);
+        doc.text(`Awarded to: ${{name}}`, 20, 60);
+        doc.text(`Score: ${{score}}/15`, 20, 75);
+        doc.text(`Date: ${{date}}`, 20, 90);
+        doc.text("Thank you for completing the TrueIQ Test.", 20, 110);
+
+        doc.save(`${name.replace(/\s+/g, "_")}_certificate.pdf`);
+
+      fetch("https://script.google.com/macros/s/AKfycbzGJ-xVgwlIvmPkieaUgNXL6Dfel9sOV3zZO5R2LNYLcXg_8-3DIjPafyfkGdpRVS-ezw/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name, email, score, date })
+      });
+      }};
+    }}
   </script>
 </body>
 </html>
