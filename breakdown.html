@@ -96,13 +96,11 @@
         doc.save(`${name.replace(/\s+/g, "_")}_certificate.pdf`);
 
         // Log to Google Sheet
-        fetch("https://script.google.com/macros/s/AKfycbzVfOS8QHXRkHomyaJM3dsAqq-R7WYOGoQVoPT73JS7eAP68olvBURG4rp__6f_hzm6Gw/exec", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ name, email, score, date })
-        });
+        fetch("https://script.google.com/macros/s/AKfycbyl8DdlwvPLPXpqLYU6rPb7q4HIE7SihKlmmWqp13TQBDIUPPfH3NGv_LptJaoYUlAI0g/     exec", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name, email, score, date })
+             });
       };
     }
   </script>
