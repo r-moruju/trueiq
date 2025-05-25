@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your IQ Score | TrueIQ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8 text-center">
+  <h1 class="text-3xl font-bold mb-4">Your Score</h1>
+  <p class="text-lg">You scored <span id="score">0</span>/15</p>
+  <p class="mt-4">Want a detailed IQ report and percentile ranking?</p>
+  <a href="https://your-stripe-or-gumroad-link" target="_blank"
+     class="mt-4 inline-block bg-blue-600 text-white px-5 py-3 rounded hover:bg-blue-700">
+    Unlock Full Report – £4.99
+  </a>
+  <script>
+    const score = localStorage.getItem("iqScore");
+    document.getElementById("score").textContent = score || 0;
+  </script>
+</body>
+</html>
