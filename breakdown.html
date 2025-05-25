@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TrueIQ – Detailed Breakdown</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-8">
+  <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-2xl">
+    <h1 class="text-3xl font-bold text-indigo-700 mb-4 text-center">Your IQ Breakdown</h1>
+    <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
+
+    <canvas id="categoryChart" class="mb-6"></canvas>
+
+    <div id="feedback" class="text-center text-lg text-gray-700"></div>
+
+    <div class="mt-6 text-center">
+      <button onclick="window.location.href='index.html'" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🏠 Back to Home</button>
+    </div>
+  </div>
+
+  <script>
+    const rawData = localStorage.getItem("categoryScores");
+    const data = rawData ? JSON.parse(rawData) : {};
+
+    const labels = Object.keys(data);
+    const values = Object.values(data);
+
+    const ctx = document.getElementById("categoryChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Correct Answers by Category",
+          data: values,
+          backgroundColor: "#6366f1"
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 1 }
+          }
+        }
+      }
+    });
+
+    const maxCategory = labels[values.indexOf(Math.max(...values))];
+    document.getElementById("feedback").textContent = `🧠 Your strongest area was: ${maxCategory}`;
+  </script>
+</body>
+</html>
