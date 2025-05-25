@@ -1,7 +1,7 @@
 // script.js
 
-const questions = [
- {
+const allQuestions = [
+  {
     question: "What comes next? 2, 4, 8, 16, ?",
     options: ["20", "24", "32", "36"],
     answer: 2
@@ -102,6 +102,12 @@ const questions = [
     answer: 1
   }
 ];
+
+
+// Randomly select 15 questions from the full list
+const questions = allQuestions
+  .sort(() => 0.5 - Math.random())
+  .slice(0, 15);
 
 let currentQuestion = 0;
 let score = 0;
