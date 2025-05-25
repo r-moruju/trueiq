@@ -1,5 +1,3 @@
-// Full IQ test logic with visual feedback
-
 const allQuestions = [
   {
     question: "What comes next? 2, 4, 8, 16, ?",
@@ -103,7 +101,6 @@ const allQuestions = [
   }
 ];
 
-// Select 15 random questions
 const questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
 
 let currentQuestion = 0;
@@ -129,8 +126,16 @@ function showQuestion() {
   q.options.forEach((option, index) => {
     const btn = document.createElement("button");
     btn.textContent = option;
-    btn.className = "option-btn bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded m-2 shadow hover:scale-105 transition-all";
-    btn.onclick = () => checkAnswer(index);
+    btn.className = "option-btn bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded m-2 shadow hover:scale-105 transition-transform duration-150";
+    btn.onclick = () => {
+      if (optionsEl.classList.contains("disabled")) return;
+      optionsEl.classList.add("disabled");
+      btn.classList.add("ring", "ring-white", "ring-offset-2");
+      setTimeout(() => {
+        optionsEl.classList.remove("disabled");
+        checkAnswer(index);
+      }, 300);
+    };
     optionsEl.appendChild(btn);
   });
 
@@ -164,8 +169,8 @@ function finishQuiz() {
 function updateProgress() {
   const percent = ((currentQuestion + 1) / questions.length) * 100;
   progressEl.innerHTML = `
-    <div class="w-full bg-gray-300 rounded-full h-2 mb-4">
-      <div class="bg-green-500 h-2 rounded-full transition-all" style="width: ${percent}%;"></div>
+    <div class="w-full bg-gray-300 rounded-full h-2 mb-2">
+      <div class="bg-green-500 h-2 rounded-full transition-all duration-500" style="width: ${percent}%;"></div>
     </div>
     <p class="text-sm text-gray-600 text-center">${currentQuestion + 1} / ${questions.length}</p>
   `;
