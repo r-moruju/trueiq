@@ -329,10 +329,120 @@ const allQuestions = [
     ],
     "answer": 1,
     "category": "Math"
+  },
+   {
+    "question": "Which shape comes next in the color sequence?",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"red\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"orange\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"yellow\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"green\" /></svg>"
+    ],
+    "answer": 3,
+    "category": "Pattern"
+  },
+  {
+    "question": "Triangle \u2192 Square \u2192 Pentagon \u2192 ?",
+    "options": [
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,10 10,90 90,90\" fill=\"steelblue\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"tomato\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,5 95,38 77,95 23,95 5,38\" fill=\"goldenrod\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,5 90,25 90,75 50,95 10,75 10,25\" fill=\"mediumseagreen\" /></svg>"
+    ],
+    "answer": 3,
+    "category": "Pattern"
+  },
+  {
+    "question": "Which has the most symmetry?",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"skyblue\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"gray\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,10 10,90 90,90\" fill=\"teal\" /></svg>",
+      "<svg width=\"60\" height=\"30\"><rect width=\"60\" height=\"30\" fill=\"salmon\" /></svg>"
+    ],
+    "answer": 0,
+    "category": "Visual"
+  },
+  {
+    "question": "Which shape does not belong?",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"blue\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"red\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,10 10,90 90,90\" fill=\"green\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><ellipse cx=\"25\" cy=\"25\" rx=\"25\" ry=\"10\" fill=\"purple\" /></svg>"
+    ],
+    "answer": 3,
+    "category": "Logic"
+  },
+  {
+    "question": "Complete the shape pattern: \u25b2, \u25a0, \u25cf, \u25b2, \u25a0, ?",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"gray\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"gray\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,10 10,90 90,90\" fill=\"gray\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><ellipse cx=\"25\" cy=\"25\" rx=\"20\" ry=\"10\" fill=\"gray\" /></svg>"
+    ],
+    "answer": 0,
+    "category": "Pattern"
+  },
+  {
+    "question": "Which is NOT a square?",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"lime\" /></svg>",
+      "<svg width=\"60\" height=\"50\"><rect width=\"60\" height=\"50\" fill=\"lime\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"lime\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"lime\" /></svg>"
+    ],
+    "answer": 1,
+    "category": "Visual"
+  },
+  {
+    "question": "Which shape shows 3 sides?",
+    "options": [
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,10 10,90 90,90\" fill=\"orange\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"orange\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"orange\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><ellipse cx=\"25\" cy=\"25\" rx=\"20\" ry=\"10\" fill=\"orange\" /></svg>"
+    ],
+    "answer": 0,
+    "category": "Math"
+  },
+  {
+    "question": "Which shape has no corners?",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"blue\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"blue\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><polygon points=\"50,5 95,38 77,95 23,95 5,38\" fill=\"blue\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,5 90,25 90,75 50,95 10,75 10,25\" fill=\"blue\" /></svg>"
+    ],
+    "answer": 0,
+    "category": "Visual"
+  },
+  {
+    "question": "Which shape has the most sides?",
+    "options": [
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,5 95,38 77,95 23,95 5,38\" fill=\"purple\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"purple\" /></svg>",
+      "<svg viewBox=\"0 0 100 100\" width=\"50\" height=\"50\"><polygon points=\"50,5 90,25 90,75 50,95 10,75 10,25\" fill=\"purple\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"purple\" /></svg>"
+    ],
+    "answer": 2,
+    "category": "Pattern"
+  },
+  {
+    "question": "Identify the odd shape out.",
+    "options": [
+      "<svg width=\"50\" height=\"50\"><circle cx=\"25\" cy=\"25\" r=\"25\" fill=\"red\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><ellipse cx=\"25\" cy=\"25\" rx=\"20\" ry=\"10\" fill=\"red\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"red\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"25\" height=\"50\" fill=\"red\" /></svg>"
+    ],
+    "answer": 3,
+    "category": "Logic"
   }
 ];
 
-const questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
+const questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 25);
 
 let currentQuestion = 0;
 let score = 0;
