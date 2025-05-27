@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,72 +63,32 @@
     <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Mobile Menu Toggle -->
   <script>
     document.getElementById("menuToggle").addEventListener("click", () => {
       const menu = document.getElementById("mobileMenu");
       menu.classList.toggle("hidden");
     });
 
-    function calculateRealIQ(questions, questionTimes) {
-      const categoryToDifficulty = {
-        Verbal: "easy",
-        General: "easy",
-        Math: "medium",
-        Logic: "medium",
-        Pattern: "medium",
-        Visual: "hard"
-      };
+    function calculateIQ(correctAnswers, totalTime) {
+      const baseScore = (correctAnswers / 15) * 50 + 75;
+      const timePerQuestion = totalTime / correctAnswers;
+      let speedBoost = 0;
 
-      const difficultyWeights = {
-        easy: 1,
-        medium: 2,
-        hard: 3
-      };
+      if (timePerQuestion < 8) speedBoost = 10;
+      else if (timePerQuestion < 12) speedBoost = 5;
 
-      let weightedScore = 0;
-      let correctAnswers = 0;
-
-      for (let i = 0; i < questions.length; i++) {
-        const q = questions[i];
-        const difficulty = categoryToDifficulty[q.category] || "medium";
-        const userAnsweredCorrectly = (q.userAnswer === q.answer);
-
-        if (userAnsweredCorrectly) {
-          weightedScore += difficultyWeights[difficulty];
-          correctAnswers++;
-        }
-      }
-
-      const averageScore = 20;
-      const SD = 5;
-      let iq = 100 + ((weightedScore - averageScore) * (15 / SD));
-
-      const totalTime = questionTimes.reduce((a, b) => a + b, 0);
-      const avgTimePerQ = totalTime / questionTimes.length;
-
-      if (avgTimePerQ < 2) iq += 5;
-      else if (avgTimePerQ > 7) iq -= 5;
-
-      return Math.round(Math.max(60, Math.min(iq, 160)));
+      return Math.round(Math.min(baseScore + speedBoost, 160));
     }
 
     const score = parseInt(localStorage.getItem("iqScore") || "0");
     const totalTime = parseInt(localStorage.getItem("totalTimeTaken") || "0");
+    const iq = calculateIQ(score, totalTime);
     const percent = Math.round((score / 15) * 100);
-
-    const questions = JSON.parse(localStorage.getItem("answeredQuestions") || "[]");
-    const times = JSON.parse(localStorage.getItem("questionTimes") || "[]");
-
-    questions.forEach((q, i) => {
-      q.userAnswer = q.userAnswer ?? q.answer; // temp logic: assume user got it right
-    });
-
-    const realIQ = calculateRealIQ(questions, times);
 
     document.getElementById("scoreText").textContent = `You answered ${score} out of 15 correctly.`;
     document.getElementById("scoreBar").style.width = `${percent}%`;
-    document.getElementById("iqText").textContent = `🎓 Estimated IQ: ${realIQ}`;
+    document.getElementById("iqText").textContent = `🎓 Estimated IQ: ${iq}`;
   </script>
 </body>
 </html>

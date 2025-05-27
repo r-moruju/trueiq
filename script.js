@@ -442,6 +442,15 @@ const allQuestions = [
   }
 ];
 
+const categoryToDifficulty = {
+  Verbal: "easy",
+  General: "easy",
+  Math: "medium",
+  Logic: "medium",
+  Pattern: "medium",
+  Visual: "hard"
+};
+
 const questions = allQuestions.sort(() => 0.5 - Math.random()).slice(0, 15);
 
 let currentQuestion = 0;
@@ -490,9 +499,16 @@ function showQuestion() {
 
 function checkAnswer(selectedIndex) {
   const current = questions[currentQuestion];
+  const difficulty = categoryToDifficulty[current.category];
+  let difficultyScores = {
+        easy: 0,
+        medium: 0,
+        hard: 0
+    };
   if (selectedIndex === current.answer) {
     score++;
     categoryScores[current.category]++;
+    difficultyScores[difficulty]++;
   }
   nextQuestion();
 }
@@ -511,6 +527,7 @@ function finishQuiz() {
   localStorage.setItem("iqScore", score);
   localStorage.setItem("categoryScores", JSON.stringify(categoryScores));
   localStorage.setItem("totalTimeTaken", totalTimeTaken);
+  localStorage.setItem("difficultyScores", JSON.stringify(difficultyScores));
   window.location.href = "results.html";
 }
 
