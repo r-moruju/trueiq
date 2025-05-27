@@ -12,57 +12,60 @@
     }
   </style>
 </head>
-<!-- Header -->
-<header class="bg-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-    <a href="index.html" class="text-xl font-bold text-indigo-700">TrueIQ</a>
-    <nav class="hidden md:flex space-x-6 text-gray-700">
-      <a href="index.html" class="hover:text-indigo-600">Home</a>
-      <a href="test.html" class="hover:text-indigo-600">Take the Test</a>
-      <a href="results.html" class="hover:text-indigo-600">Results</a>
-      <a href="about.html" class="hover:text-indigo-600">About</a>
-    </nav>
-    <!-- Mobile menu button -->
-    <div class="md:hidden">
-      <button id="menuToggle" class="text-gray-700 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-100 min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="index.html" class="text-xl font-bold text-indigo-700">TrueIQ</a>
+      <nav class="hidden md:flex space-x-6 text-gray-700">
+        <a href="index.html" class="hover:text-indigo-600">Home</a>
+        <a href="test.html" class="hover:text-indigo-600">Take the Test</a>
+        <a href="results.html" class="hover:text-indigo-600">Results</a>
+        <a href="about.html" class="hover:text-indigo-600">About</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-gray-700 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
     </div>
-  </div>
-  <!-- Mobile menu dropdown -->
-  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 bg-white border-t border-gray-200">
-    <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
-    <a href="test.html" class="block py-2 text-gray-700 hover:text-indigo-600">Take the Test</a>
-    <a href="results.html" class="block py-2 text-gray-700 hover:text-indigo-600">Results</a>
-    <a href="about.html" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
-  </div>
-</header>
+    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 bg-white border-t border-gray-200">
+      <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
+      <a href="test.html" class="block py-2 text-gray-700 hover:text-indigo-600">Take the Test</a>
+      <a href="results.html" class="block py-2 text-gray-700 hover:text-indigo-600">Results</a>
+      <a href="about.html" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+    </div>
+  </header>
 
-<!-- JS to toggle mobile menu -->
-<script>
-  document.getElementById("menuToggle").addEventListener("click", () => {
-    const menu = document.getElementById("mobileMenu");
-    menu.classList.toggle("hidden");
-  });
-</script>
-<body class="bg-gradient-to-br from-indigo-50 to-purple-100 min-h-screen flex items-center justify-center">
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center p-10">
+    <div class="text-center p-10 bg-white shadow-xl rounded-2xl max-w-lg w-full border border-gray-100">
+      <img src="logo.png" alt="TrueIQ Logo" class="w-48 mx-auto mb-4 opacity-80">
+      <h1 class="text-4xl font-bold mb-4 text-gray-800">Welcome to <span class="text-purple-600">TrueIQ</span></h1>
+      <p class="mb-6 text-lg text-gray-600">Take our free, science-based IQ test and discover your potential.</p>
+      <a href="test.html" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-all font-semibold">
+        Start the IQ Test
+      </a>
+    </div>
+  </main>
 
-  <div class="text-center p-10 bg-white shadow-xl rounded-2xl max-w-lg w-full border border-gray-100">
-    <img src="logo.png" alt="TrueIQ Logo" class="w-50 mx-auto mb-4 opacity-80">
-    <h1 class="text-4xl font-bold mb-4 text-gray-800">Welcome to <span class="text-purple-600">TrueIQ</span></h1>
-    <p class="mb-6 text-lg text-gray-600">Take our free, science-based IQ test and discover your potential.</p>
-    <a href="test.html" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-all font-semibold">
-      Start the IQ Test
-    </a>
-  </div>
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-600">
+    <p>© 2025 TrueIQ. All rights reserved.</p>
+    <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
+  </footer>
+
+  <!-- Mobile Menu Toggle Script -->
+  <script>
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("hidden");
+    });
+  </script>
 
 </body>
-<!-- Footer -->
-<footer class="bg-gray-100 mt-12 py-6 text-center text-sm text-gray-600">
-  <p>© 2025 TrueIQ. All rights reserved.</p>
-  <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
-</footer>
 </html>

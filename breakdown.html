@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,63 +8,70 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<!-- Header -->
-<header class="bg-white shadow sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-    <a href="index.html" class="text-xl font-bold text-indigo-700">TrueIQ</a>
-    <nav class="hidden md:flex space-x-6 text-gray-700">
-      <a href="index.html" class="hover:text-indigo-600">Home</a>
-      <a href="test.html" class="hover:text-indigo-600">Take the Test</a>
-      <a href="results.html" class="hover:text-indigo-600">Results</a>
-      <a href="about.html" class="hover:text-indigo-600">About</a>
-    </nav>
-    <!-- Mobile menu button -->
-    <div class="md:hidden">
-      <button id="menuToggle" class="text-gray-700 focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-  <!-- Mobile menu dropdown -->
-  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 bg-white border-t border-gray-200">
-    <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
-    <a href="test.html" class="block py-2 text-gray-700 hover:text-indigo-600">Take the Test</a>
-    <a href="results.html" class="block py-2 text-gray-700 hover:text-indigo-600">Results</a>
-    <a href="about.html" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
-  </div>
-</header>
+<body class="bg-gray-50 min-h-screen flex flex-col justify-between">
 
-<!-- JS to toggle mobile menu -->
-<script>
-  document.getElementById("menuToggle").addEventListener("click", () => {
-    const menu = document.getElementById("mobileMenu");
-    menu.classList.toggle("hidden");
-  });
-</script>
-<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-8">
-  <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-2xl">
-    <h1 class="text-3xl font-bold text-indigo-700 mb-4 text-center">Your IQ Breakdown</h1>
-    <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
-
-    <canvas id="categoryChart" class="mb-6"></canvas>
-    <div id="feedback" class="text-center text-lg text-gray-700 mb-4"></div>
-
-    <div class="border-t border-gray-200 pt-4 mt-6">
-      <h2 class="text-xl font-semibold mb-2 text-center">🎓 Get Your Certificate</h2>
-      <div class="flex flex-col items-center gap-2">
-        <input type="text" id="userName" placeholder="Enter your full name" class="border p-2 rounded w-full max-w-sm" />
-        <input type="email" id="userEmail" placeholder="Enter your email" class="border p-2 rounded w-full max-w-sm" />
-        <button onclick="generateCertificate()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
-          📄 Download Certificate
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="index.html" class="text-xl font-bold text-indigo-700">TrueIQ</a>
+      <nav class="hidden md:flex space-x-6 text-gray-700">
+        <a href="index.html" class="hover:text-indigo-600">Home</a>
+        <a href="test.html" class="hover:text-indigo-600">Take the Test</a>
+        <a href="results.html" class="hover:text-indigo-600">Results</a>
+        <a href="about.html" class="hover:text-indigo-600">About</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-gray-700 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
         </button>
       </div>
     </div>
-  </div>
+    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 bg-white border-t border-gray-200">
+      <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
+      <a href="test.html" class="block py-2 text-gray-700 hover:text-indigo-600">Take the Test</a>
+      <a href="results.html" class="block py-2 text-gray-700 hover:text-indigo-600">Results</a>
+      <a href="about.html" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+    </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center p-8">
+    <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-2xl">
+      <h1 class="text-3xl font-bold text-indigo-700 mb-4 text-center">Your IQ Breakdown</h1>
+      <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
+
+      <canvas id="categoryChart" class="mb-6"></canvas>
+      <div id="feedback" class="text-center text-lg text-gray-700 mb-4"></div>
+
+      <div class="border-t border-gray-200 pt-4 mt-6">
+        <h2 class="text-xl font-semibold mb-2 text-center">🎓 Get Your Certificate</h2>
+        <div class="flex flex-col items-center gap-2">
+          <input type="text" id="userName" placeholder="Enter your full name" class="border p-2 rounded w-full max-w-sm" />
+          <input type="email" id="userEmail" placeholder="Enter your email" class="border p-2 rounded w-full max-w-sm" />
+          <button onclick="generateCertificate()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+            📄 Download Certificate
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-600">
+    <p>© 2025 TrueIQ. All rights reserved.</p>
+    <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
+  </footer>
+
+  <!-- Scripts -->
   <script>
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("hidden");
+    });
+
     const rawData = localStorage.getItem("categoryScores");
     const data = rawData ? JSON.parse(rawData) : {};
     const labels = Object.keys(data);
@@ -106,63 +112,61 @@
     }
 
     async function generateCertificate() {
-  const name = document.getElementById("userName").value.trim();
-  const email = document.getElementById("userEmail").value.trim();
-  const score = parseInt(localStorage.getItem("iqScore") || "0");
-  const time = parseInt(localStorage.getItem("totalTimeTaken") || "0");
-  const iq = calculateIQ(score, time);
-  const date = new Date().toLocaleDateString();
+      const name = document.getElementById("userName").value.trim();
+      const email = document.getElementById("userEmail").value.trim();
+      const score = parseInt(localStorage.getItem("iqScore") || "0");
+      const time = parseInt(localStorage.getItem("totalTimeTaken") || "0");
+      const iq = calculateIQ(score, time);
+      const date = new Date().toLocaleDateString();
 
-  if (!name || !email) {
-    alert("Please fill in name and email.");
-    return;
-  }
+      if (!name || !email) {
+        alert("Please fill in name and email.");
+        return;
+      }
 
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
 
-  const logo = new Image();
-  logo.src = "logo.png";
-  logo.onload = function () {
-    doc.addImage(logo, "PNG", 80, 20, 50, 20);
-    doc.setDrawColor(180);
-    doc.rect(10, 10, 190, 270, "S");
+      const logo = new Image();
+      logo.src = "logo.png";
+      logo.onload = function () {
+        doc.addImage(logo, "PNG", 80, 20, 50, 20);
+        doc.setDrawColor(180);
+        doc.rect(10, 10, 190, 270, "S");
 
-    doc.setFontSize(20);
-    doc.setFont("times", "bold");
-    doc.text("Certificate of Achievement", 105, 50, null, null, "center");
+        doc.setFontSize(20);
+        doc.setFont("times", "bold");
+        doc.text("Certificate of Achievement", 105, 50, null, null, "center");
 
-    doc.setFontSize(12);
-    doc.setFont("helvetica", "normal");
-    doc.text("This certifies that", 105, 65, null, null, "center");
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "normal");
+        doc.text("This certifies that", 105, 65, null, null, "center");
 
-    doc.setFontSize(16);
-    doc.setTextColor(33, 60, 130);
-    doc.text(name, 105, 80, null, null, "center");
+        doc.setFontSize(16);
+        doc.setTextColor(33, 60, 130);
+        doc.text(name, 105, 80, null, null, "center");
 
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
-    doc.text("has successfully completed the TrueIQ Intelligence Test", 105, 95, null, null, "center");
-    doc.text("Scored: " + score + "/15", 105, 110, null, null, "center");
-    doc.text("Estimated IQ: " + iq, 105, 120, null, null, "center");
-    doc.text("Date: " + date, 105, 130, null, null, "center");
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(12);
+        doc.text("has successfully completed the TrueIQ Intelligence Test", 105, 95, null, null, "center");
+        doc.text("Scored: " + score + "/15", 105, 110, null, null, "center");
+        doc.text("Estimated IQ: " + iq, 105, 120, null, null, "center");
+        doc.text("Date: " + date, 105, 130, null, null, "center");
 
-    // Fake sigil
-    doc.setFontSize(10);
-    doc.setFont("courier", "bold");
-    doc.text("TRUEIQ INTELLIGENCE BOARD", 105, 170, null, null, "center");
+        doc.setFontSize(10);
+        doc.setFont("courier", "bold");
+        doc.text("TRUEIQ INTELLIGENCE BOARD", 105, 170, null, null, "center");
 
-    // Fake signature
-    doc.setFontSize(20);
-    doc.setFont("times", "italic");
-    doc.text("Dr. R. Moruju", 40, 200);
-    doc.setFontSize(10);
-    doc.setFont("helvetica", "normal");
-    doc.text("Administrator", 40, 207);
+        doc.setFontSize(20);
+        doc.setFont("times", "italic");
+        doc.text("Dr. R. Moruju", 40, 200);
+        doc.setFontSize(10);
+        doc.setFont("helvetica", "normal");
+        doc.text("Administrator", 40, 207);
 
-    doc.save(name.replace(/\s+/g, "_") + "_TrueIQ_Certificate.pdf");
-  };
-  };
+        doc.save(name.replace(/\\s+/g, "_") + "_TrueIQ_Certificate.pdf");
+      };
+    }
   </script>
 </body>
 </html>
