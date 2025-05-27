@@ -15,7 +15,6 @@
     <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
 
     <canvas id="categoryChart" class="mb-6"></canvas>
-
     <div id="feedback" class="text-center text-lg text-gray-700 mb-4"></div>
 
     <div class="border-t border-gray-200 pt-4 mt-6">
@@ -28,21 +27,49 @@
         </button>
       </div>
     </div>
-
-    <div class="mt-6 text-center">
-      <button onclick="window.location.href='index.html'" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🏠 Back to Home</button>
-    </div>
   </div>
 
   <script>
-function calculateIQ(score, time) {
-  const base = (score / 15) * 50 + 75;
-  const tpq = time / score;
-  let boost = tpq < 8 ? 10 : tpq < 12 ? 5 : 0;
-  return Math.round(Math.min(base + boost, 160));
-}
+    const rawData = localStorage.getItem("categoryScores");
+    const data = rawData ? JSON.parse(rawData) : {};
+    const labels = Object.keys(data);
+    const values = Object.values(data);
 
-async function generateCertificate() {
+    const ctx = document.getElementById("categoryChart").getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Correct Answers by Category",
+          data: values,
+          backgroundColor: "#6366f1"
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { stepSize: 1 }
+          }
+        }
+      }
+    });
+
+    const maxCategory = labels[values.indexOf(Math.max(...values))];
+    document.getElementById("feedback").textContent = `🧠 Your strongest area was: ${maxCategory}`;
+
+    function calculateIQ(correctAnswers, totalTime) {
+      const baseScore = (correctAnswers / 15) * 50 + 75;
+      const timePerQuestion = totalTime / correctAnswers;
+      let speedBoost = 0;
+      if (timePerQuestion < 8) speedBoost = 10;
+      else if (timePerQuestion < 12) speedBoost = 5;
+      return Math.round(Math.min(baseScore + speedBoost, 160));
+    }
+
+    async function generateCertificate() {
   const name = document.getElementById("userName").value.trim();
   const email = document.getElementById("userEmail").value.trim();
   const score = parseInt(localStorage.getItem("iqScore") || "0");
@@ -61,7 +88,7 @@ async function generateCertificate() {
   const logo = new Image();
   logo.src = "logo.png";
   logo.onload = function () {
-    doc.addImage(logo, "PNG", 80, 10, 50, 20);
+    doc.addImage(logo, "PNG", 80, 20, 50, 20);
     doc.setDrawColor(180);
     doc.rect(10, 10, 190, 270, "S");
 
@@ -99,7 +126,7 @@ async function generateCertificate() {
 
     doc.save(name.replace(/\s+/g, "_") + "_TrueIQ_Certificate.pdf");
   };
-}
-</script>
+  };
+  </script>
 </body>
 </html>
