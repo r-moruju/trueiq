@@ -10,6 +10,42 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-8">
+  <!-- Header -->
+<header class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+    <a href="index.html" class="text-xl font-bold text-indigo-700">TrueIQ</a>
+    <nav class="hidden md:flex space-x-6 text-gray-700">
+      <a href="index.html" class="hover:text-indigo-600">Home</a>
+      <a href="test.html" class="hover:text-indigo-600">Take the Test</a>
+      <a href="results.html" class="hover:text-indigo-600">Results</a>
+      <a href="about.html" class="hover:text-indigo-600">About</a>
+    </nav>
+    <!-- Mobile menu button -->
+    <div class="md:hidden">
+      <button id="menuToggle" class="text-gray-700 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu dropdown -->
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 bg-white border-t border-gray-200">
+    <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
+    <a href="test.html" class="block py-2 text-gray-700 hover:text-indigo-600">Take the Test</a>
+    <a href="results.html" class="block py-2 text-gray-700 hover:text-indigo-600">Results</a>
+    <a href="about.html" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+  </div>
+</header>
+
+<!-- JS to toggle mobile menu -->
+<script>
+  document.getElementById("menuToggle").addEventListener("click", () => {
+    const menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("hidden");
+  });
+</script>
   <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-2xl">
     <h1 class="text-3xl font-bold text-indigo-700 mb-4 text-center">Your IQ Breakdown</h1>
     <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
@@ -128,5 +164,10 @@
   };
   };
   </script>
+  <!-- Footer -->
+<footer class="bg-gray-100 mt-12 py-6 text-center text-sm text-gray-600">
+  <p>© 2025 TrueIQ. All rights reserved.</p>
+  <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
+</footer>
 </body>
 </html>
