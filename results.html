@@ -108,8 +108,8 @@
       const totalTime = questionTimes.reduce((a, b) => a + b, 0);
       const avgTimePerQ = totalTime / questionTimes.length;
 
-      if (avgTimePerQ < 2) iq += 5;
-      else if (avgTimePerQ > 7) iq -= 5;
+      if (avgTimePerQ < 8) iq += 5;
+      else if (avgTimePerQ > 15) iq -= 5;
 
       return Math.round(Math.max(60, Math.min(iq, 160)));
     }
