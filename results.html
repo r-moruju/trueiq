@@ -11,9 +11,7 @@
 <script>
   // Redirect if test data not found
   const score2 = localStorage.getItem("iqScore");
-  const iq = localStorage.getItem("realIQ");
-
-  if (!score2 || !iq) {
+  if (!score2) {
     alert("Please complete the test first.");
     window.location.href = "test.html";
   }
