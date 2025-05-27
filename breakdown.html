@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="brainpulseiq_favicon.ico" type="image/x-icon">
   <title>BrainPulseIQ – Detailed Breakdown</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
+
 <body class="bg-gray-50 min-h-screen flex flex-col justify-between">
 
   <!-- Header -->
@@ -26,8 +28,7 @@
       <div class="md:hidden">
         <button id="menuToggle" class="text-gray-700 focus:outline-none">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
@@ -47,13 +48,20 @@
       <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
 
       <canvas id="categoryChart" class="mb-6"></canvas>
+      <!-- Insights Section -->
+      <div id="insightsSection" class="mt-10 hidden">
+        <h2 class="text-2xl font-bold text-indigo-700 mb-4 text-center">🧠 Personal Insights</h2>
+        <div id="insightsContent" class="space-y-6 text-gray-700 text-base"></div>
+      </div>
       <div id="feedback" class="text-center text-lg text-gray-700 mb-4"></div>
 
       <div class="border-t border-gray-200 pt-4 mt-6">
         <h2 class="text-xl font-semibold mb-2 text-center">🎓 Get Your Certificate</h2>
         <div class="flex flex-col items-center gap-2">
-          <input type="text" id="userName" placeholder="Enter your full name" class="border p-2 rounded w-full max-w-sm" />
-          <input type="email" id="userEmail" placeholder="Enter your email" class="border p-2 rounded w-full max-w-sm" />
+          <input type="text" id="userName" placeholder="Enter your full name"
+            class="border p-2 rounded w-full max-w-sm" />
+          <input type="email" id="userEmail" placeholder="Enter your email"
+            class="border p-2 rounded w-full max-w-sm" />
           <button onclick="generateCertificate()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
             📄 Download Certificate
           </button>
@@ -70,6 +78,9 @@
 
   <!-- Script -->
   <script>
+    
+    localStorage.setItem("hasPaid", "true");
+
     document.getElementById("menuToggle").addEventListener("click", () => {
       const menu = document.getElementById("mobileMenu");
       menu.classList.toggle("hidden");
@@ -102,18 +113,72 @@
       }
     });
 
+    // Insights content per category
+    const insightsMap = {
+      Verbal: {
+        title: "Verbal Reasoning",
+        description: "You excel at language and comprehension. Consider activities like reading, debates, or vocabulary games to sharpen these skills.",
+        type: "The Communicator"
+      },
+      Logic: {
+        title: "Logical Reasoning",
+        description: "You are great at identifying patterns and making deductions. You might enjoy chess, puzzles, or programming challenges.",
+        type: "The Analyst"
+      },
+      Math: {
+        title: "Mathematical Reasoning",
+        description: "You have strong numerical and problem-solving skills. Consider math games, finance puzzles, or coding.",
+        type: "The Problem Solver"
+      },
+      Pattern: {
+        title: "Pattern Recognition",
+        description: "Your brain spots trends and sequences quickly. Explore cryptography, data analysis, or strategy games.",
+        type: "The Strategist"
+      },
+      Visual: {
+        title: "Visual-Spatial Thinking",
+        description: "You process images and shapes effectively. Great for design, architecture, or visual arts.",
+        type: "The Visual Thinker"
+      },
+      General: {
+        title: "General Knowledge",
+        description: "You have a good breadth of knowledge. Trivia, reading widely, and curiosity-driven learning will benefit you.",
+        type: "The Explorer"
+      }
+    };
+
+    function showInsights(maxCategory) {
+      const container = document.getElementById("insightsSection");
+      const content = document.getElementById("insightsContent");
+      content.innerHTML = "";
+
+      const insight = insightsMap[maxCategory];
+      if (insight) {
+        const card = document.createElement("div");
+        card.className = "bg-white border border-gray-200 p-5 rounded-xl shadow-md";
+        card.innerHTML = `
+      <h3 class="text-lg font-semibold text-purple-700 mb-1">${insight.title} – <span class="italic text-gray-600">${insight.type}</span></h3>
+      <p>${insight.description}</p>
+    `;
+        content.appendChild(card);
+        container.classList.remove("hidden");
+      }
+    }
+
     const maxCategory = labels[values.indexOf(Math.max(...values))];
     document.getElementById("feedback").textContent = `🧠 Your strongest area was: ${maxCategory}`;
-   /*
-    function calculateIQ(correctAnswers, totalTime) {
-      const baseScore = (correctAnswers / 15) * 50 + 75;
-      const timePerQuestion = totalTime / correctAnswers;
-      let speedBoost = 0;
-      if (timePerQuestion < 8) speedBoost = 10;
-      else if (timePerQuestion < 12) speedBoost = 5;
-      return Math.round(Math.min(baseScore + speedBoost, 160));
-    }
-      */
+    // Call the updated function with maxCategory
+    showInsights(maxCategory);
+    /*
+     function calculateIQ(correctAnswers, totalTime) {
+       const baseScore = (correctAnswers / 15) * 50 + 75;
+       const timePerQuestion = totalTime / correctAnswers;
+       let speedBoost = 0;
+       if (timePerQuestion < 8) speedBoost = 10;
+       else if (timePerQuestion < 12) speedBoost = 5;
+       return Math.round(Math.min(baseScore + speedBoost, 160));
+     }
+       */
 
     async function generateCertificate() {
       const name = document.getElementById("userName").value.trim();
@@ -154,9 +219,9 @@
         method: "POST",
         body: formData
       })
-      .then(res => res.text())
-      .then(result => console.log("✅ Saved to Google Sheet:", result))
-      .catch(err => console.error("❌ Failed to save:", err));
+        .then(res => res.text())
+        .then(result => console.log("✅ Saved to Google Sheet:", result))
+        .catch(err => console.error("❌ Failed to save:", err));
 
       // Generate PDF
       const { jsPDF } = window.jspdf;
@@ -203,4 +268,5 @@
     }
   </script>
 </body>
+
 </html>

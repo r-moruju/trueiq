@@ -1,13 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="brainpulseiq_favicon.ico" type="image/x-icon">
   <title>Your BrainPulseIQ Results</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<script>
+  // Redirect if test data not found
+  const score2 = localStorage.getItem("iqScore");
+  const iq = localStorage.getItem("realIQ");
+
+  if (!score2 || !iq) {
+    alert("Please complete the test first.");
+    window.location.href = "test.html";
+  }
+</script>
+
 <body class="bg-gradient-to-tr from-blue-50 via-white to-purple-100 min-h-screen flex flex-col justify-between">
 
   <!-- Header -->
@@ -25,8 +36,7 @@
       <div class="md:hidden">
         <button id="menuToggle" class="text-gray-700 focus:outline-none">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
@@ -48,13 +58,8 @@
         <div id="scoreBar" class="bg-purple-600 h-4 rounded-full transition-all" style="width: 0%"></div>
       </div>
       <p id="iqText" class="text-xl font-semibold mb-2 text-indigo-800"></p>
-      <div class="flex flex-col md:flex-row justify-center gap-4 mt-4">
-        <button onclick="window.location.href='test.html'" class="bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition">
-          Retake Test
-        </button>
-        <button onclick="window.location.href='https://buy.stripe.com/test_8x2fZa5v6cPJ3Kybee0x200'" class="bg-yellow-500 text-white px-4 py-2 rounded">
-         Breakdown & Certificate ($4.99)
-        </button>
+      <div class="flex flex-col md:flex-row justify-center gap-4 mt-4" id="actionButtons">
+        <!-- Buttons will be inserted here by script -->
       </div>
     </div>
   </main>
@@ -67,6 +72,31 @@
 
   <!-- Scripts -->
   <script>
+    const container = document.getElementById("actionButtons");
+
+    const retakeBtn = document.createElement("button");
+    retakeBtn.textContent = "Retake Test";
+    retakeBtn.className = "bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition";
+    retakeBtn.onclick = () => window.location.href = "test.html";
+
+    const hasPaid = localStorage.getItem("hasPaid") === "true";
+    const secondBtn = document.createElement("button");
+
+    if (hasPaid) {
+      secondBtn.textContent = "View Full Breakdown";
+      secondBtn.className = "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700";
+      secondBtn.onclick = () => window.location.href = "breakdown.html";
+    } else {
+      secondBtn.textContent = "Unlock Full Breakdown ($4.99)";
+      secondBtn.className = "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600";
+      secondBtn.onclick = () =>
+        window.location.href = "https://buy.stripe.com/test_8x2fZa5v6cPJ3Kybee0x200"; // Replace with your real checkout URL
+    }
+
+    container.appendChild(retakeBtn);
+    container.appendChild(secondBtn);
+
+
     document.getElementById("menuToggle").addEventListener("click", () => {
       const menu = document.getElementById("mobileMenu");
       menu.classList.toggle("hidden");
@@ -134,4 +164,5 @@
     document.getElementById("iqText").textContent = `🎓 Estimated IQ: ${realIQ}`;
   </script>
 </body>
+
 </html>
