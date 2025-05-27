@@ -467,6 +467,12 @@ let categoryScores = {
   General: 0
 };
 
+let difficultyScores = {
+  easy: 0,
+  medium: 0,
+  hard: 0
+};
+
 const questionEl = document.getElementById("question");
 const optionsEl = document.getElementById("options");
 const timerEl = document.getElementById("timer");
@@ -499,16 +505,20 @@ function showQuestion() {
 
 function checkAnswer(selectedIndex) {
   const current = questions[currentQuestion];
-  const difficulty = categoryToDifficulty[current.category];
-  let difficultyScores = {
-        easy: 0,
-        medium: 0,
-        hard: 0
-    };
+  const categoryToDifficulty = {
+   Verbal: "easy",
+   General: "easy",
+   Math: "medium",
+   Logic: "medium",
+   Pattern: "medium",
+   Visual: "hard"
+  };
+  const difficulty = categoryToDifficulty[current.category] || "medium";
+
   if (selectedIndex === current.answer) {
-    score++;
-    categoryScores[current.category]++;
-    difficultyScores[difficulty]++;
+   score++;
+   categoryScores[current.category]++;
+   difficultyScores[difficulty]++;
   }
   nextQuestion();
 }
