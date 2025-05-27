@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TrueIQ – Detailed Breakdown</title>
+  <title>BrainPulseIQ – Detailed Breakdown</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -63,8 +63,8 @@
 
   <!-- Footer -->
   <footer class="bg-gray-100 py-6 text-center text-sm text-gray-600">
-    <p>© 2025 TrueIQ. All rights reserved.</p>
-    <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
+    <p>© 2025 BrainPulseIQ. All rights reserved.</p>
+    <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@brainpulsiq.com</a></p>
   </footer>
 
   <!-- Script -->
@@ -169,7 +169,7 @@
 
         doc.setFontSize(20);
         doc.setFont("times", "bold");
-        doc.text("Certificate of Achievement", 105, 50, null, null, "center");
+        doc.text("Certificate of Achievement", 105, 50, null, null, "center", "undeline");
 
         doc.setFontSize(12);
         doc.setFont("helvetica", "normal");
@@ -181,14 +181,14 @@
 
         doc.setTextColor(0, 0, 0);
         doc.setFontSize(12);
-        doc.text("has successfully completed the TrueIQ Intelligence Test", 105, 95, null, null, "center");
+        doc.text("has successfully completed the BrainPulseIQ Intelligence Test", 105, 95, null, null, "center");
         doc.text("Scored: " + score + "/15", 105, 110, null, null, "center");
         doc.text("Estimated IQ: " + iq, 105, 120, null, null, "center");
         doc.text("Date: " + date, 105, 130, null, null, "center");
 
         doc.setFontSize(10);
         doc.setFont("courier", "bold");
-        doc.text("TRUEIQ INTELLIGENCE BOARD", 105, 170, null, null, "center");
+        doc.text("BrainPulseIQ INTELLIGENCE BOARD", 105, 170, null, null, "center");
 
         doc.setFontSize(20);
         doc.setFont("times", "italic");
@@ -197,7 +197,7 @@
         doc.setFont("helvetica", "normal");
         doc.text("Administrator", 40, 207);
 
-        doc.save(name.replace(/\s+/g, "_") + "_TrueIQ_Certificate.pdf");
+        doc.save(name.replace(/\s+/g, "_") + "_BrainPulseIQ_Certificate.pdf");
       };
     }
   </script>
