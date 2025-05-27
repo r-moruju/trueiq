@@ -4,37 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TrueIQ – Detailed Breakdown</title>
+  <title>TrueIQ – Certificate</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center p-8">
-  <div class="bg-white shadow-xl rounded-lg p-6 w-full max-w-2xl">
-    <h1 class="text-3xl font-bold text-indigo-700 mb-4 text-center">Your IQ Breakdown</h1>
-    <p class="text-center text-gray-600 mb-6">Based on your performance across different categories</p>
-
-    <canvas id="categoryChart" class="mb-6"></canvas>
-
-    <div id="feedback" class="text-center text-lg text-gray-700 mb-4"></div>
-
-    <div class="border-t border-gray-200 pt-4 mt-6">
-      <h2 class="text-xl font-semibold mb-2 text-center">🎓 Get Your Certificate</h2>
-      <div class="flex flex-col items-center gap-2">
-        <input type="text" id="userName" placeholder="Enter your full name" class="border p-2 rounded w-full max-w-sm" />
-        <input type="email" id="userEmail" placeholder="Enter your email" class="border p-2 rounded w-full max-w-sm" />
-        <button onclick="generateCertificate()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
-          📄 Download Certificate
-        </button>
-      </div>
-    </div>
-
-    <div class="mt-6 text-center">
-      <button onclick="window.location.href='index.html'" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🏠 Back to Home</button>
-    </div>
+<body class="bg-gray-100 p-10">
+  <div class="max-w-2xl mx-auto bg-white shadow-2xl rounded-lg p-8 border border-gray-300">
+    <h1 class="text-3xl font-bold text-center text-indigo-700 mb-6">🎓 Download Your Official Certificate</h1>
+    <input id="userName" placeholder="Full Name" class="border p-2 rounded w-full max-w-md mx-auto block mb-3" />
+    <input id="userEmail" placeholder="Email Address" class="border p-2 rounded w-full max-w-md mx-auto block mb-3" />
+    <button onclick="generateCertificate()" class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-2 rounded mx-auto block mt-4">
+      📄 Generate PDF Certificate
+    </button>
   </div>
 
-  <script>
+<script>
 function calculateIQ(score, time) {
   const base = (score / 15) * 50 + 75;
   const tpq = time / score;
