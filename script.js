@@ -515,6 +515,8 @@ function checkAnswer(selectedIndex) {
   };
   const difficulty = categoryToDifficulty[current.category] || "medium";
 
+  questions[currentQuestion].userAnswer = selectedIndex;
+
   if (selectedIndex === current.answer) {
    score++;
    categoryScores[current.category]++;
@@ -538,6 +540,7 @@ function finishQuiz() {
   localStorage.setItem("categoryScores", JSON.stringify(categoryScores));
   localStorage.setItem("totalTimeTaken", totalTimeTaken);
   localStorage.setItem("difficultyScores", JSON.stringify(difficultyScores));
+  localStorage.setItem("answeredQuestions", JSON.stringify(questions));
   window.location.href = "results.html";
 }
 
