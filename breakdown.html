@@ -65,7 +65,7 @@
     <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@trueiq.com</a></p>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Script -->
   <script>
     document.getElementById("menuToggle").addEventListener("click", () => {
       const menu = document.getElementById("mobileMenu");
@@ -124,9 +124,22 @@
         return;
       }
 
+      // Send data to Google Sheet
+      try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbx6ybu7grJ_Ug8Q9F4WJHRFqKuaidIozt69cbG51LIB9u3Tfl8CJ_eHR3W1aK479A4dNQ/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, score, iq })
+        });
+        const result = await response.text();
+        console.log("Google Sheet saved:", result);
+      } catch (err) {
+        console.error("Failed to save to sheet:", err);
+      }
+
+      // Generate PDF
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
-
       const logo = new Image();
       logo.src = "logo.png";
       logo.onload = function () {
@@ -164,7 +177,7 @@
         doc.setFont("helvetica", "normal");
         doc.text("Administrator", 40, 207);
 
-        doc.save(name.replace(/\\s+/g, "_") + "_TrueIQ_Certificate.pdf");
+        doc.save(name.replace(/\s+/g, "_") + "_TrueIQ_Certificate.pdf");
       };
     }
   </script>
