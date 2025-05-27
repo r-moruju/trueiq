@@ -103,7 +103,7 @@
 
     const maxCategory = labels[values.indexOf(Math.max(...values))];
     document.getElementById("feedback").textContent = `🧠 Your strongest area was: ${maxCategory}`;
-
+   /*
     function calculateIQ(correctAnswers, totalTime) {
       const baseScore = (correctAnswers / 15) * 50 + 75;
       const timePerQuestion = totalTime / correctAnswers;
@@ -112,13 +112,14 @@
       else if (timePerQuestion < 12) speedBoost = 5;
       return Math.round(Math.min(baseScore + speedBoost, 160));
     }
+      */
 
     async function generateCertificate() {
       const name = document.getElementById("userName").value.trim();
       const email = document.getElementById("userEmail").value.trim();
       const score = parseInt(localStorage.getItem("iqScore") || "0");
       const time = parseInt(localStorage.getItem("totalTimeTaken") || "0");
-      const iq = calculateIQ(score, time);
+      const iq = parseInt(localStorage.getItem("realIQ") || "100");
       const date = new Date().toLocaleDateString();
 
       if (!name || !email) {

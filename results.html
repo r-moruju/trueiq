@@ -126,6 +126,7 @@
     });
 
     const realIQ = calculateRealIQ(questions, times);
+    localStorage.setItem("realIQ", realIQ);
 
     document.getElementById("scoreText").textContent = `You answered ${score} out of 15 correctly.`;
     document.getElementById("scoreBar").style.width = `${percent}%`;
