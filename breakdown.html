@@ -78,7 +78,7 @@
 
   <!-- Script -->
   <script>
-    
+
     localStorage.setItem("hasPaid", "true");
 
     document.getElementById("menuToggle").addEventListener("click", () => {
@@ -181,6 +181,7 @@
        */
 
     async function generateCertificate() {
+      const { jsPDF } = window.jspdf;
       const name = document.getElementById("userName").value.trim();
       const email = document.getElementById("userEmail").value.trim();
       const score = parseInt(localStorage.getItem("iqScore") || "0");
@@ -224,6 +225,7 @@
         .catch(err => console.error("❌ Failed to save:", err));
 
       // Generate PDF
+      /*
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       const logo = new Image();
@@ -262,6 +264,30 @@
         doc.setFontSize(10);
         doc.setFont("helvetica", "normal");
         doc.text("Administrator", 40, 207);
+      */
+      const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: [210,210]
+      });
+
+      const background = new Image();
+      background.src = "certificate_bg.png"; // Replace with correct filename/path
+
+      background.onload = function () {
+        doc.addImage(background, "PNG", 0, 0, 210, 210); // Full A4 landscape
+
+        doc.setFont("times", "bold");
+        doc.setFontSize(24);
+        doc.setTextColor(33, 60, 130);
+        doc.text(name, 105, 110, { align: "center" }); // Centered on page
+
+        doc.setFontSize(17);
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(0, 0, 0);
+        doc.text(` ${score}/15`, 120, 143, { align: "center" });
+        doc.text(` ${iq}`, 124, 153, { align: "center" });
+        doc.text(` ${date}`, 126, 163, { align: "center" });
 
         doc.save(name.replace(/\s+/g, "_") + "_BrainPulseIQ_Certificate.pdf");
       };
