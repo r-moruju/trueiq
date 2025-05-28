@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="brainpulseiq_favicon.ico" type="image/x-icon">
+  <title>Your BrainPulseIQ Results</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Your TrueIQ Results</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -16,6 +23,160 @@
     }
   </style>
 </head>
+
+<script>
+  // Redirect if test data not found
+  const score2 = localStorage.getItem("iqScore");
+  if (!score2) {
+    alert("Please complete the test first.");
+    window.location.href = "test.html";
+  }
+</script>
+
+<body class="bg-gradient-to-tr from-blue-50 via-white to-purple-100 min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center">
+        <img src="logo.png" alt="TrueIQ Logo" class="h-20 w-auto" />
+      </a>
+      <nav class="hidden md:flex space-x-6 text-gray-700">
+        <a href="index.html" class="hover:text-indigo-600">Home</a>
+        <a href="test.html" class="hover:text-indigo-600">Take the Test</a>
+        <a href="results.html" class="hover:text-indigo-600">Results</a>
+        <a href="about.html" class="hover:text-indigo-600">About</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-gray-700 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 bg-white border-t border-gray-200">
+      <a href="index.html" class="block py-2 text-gray-700 hover:text-indigo-600">Home</a>
+      <a href="test.html" class="block py-2 text-gray-700 hover:text-indigo-600">Take the Test</a>
+      <a href="results.html" class="block py-2 text-gray-700 hover:text-indigo-600">Results</a>
+      <a href="about.html" class="block py-2 text-gray-700 hover:text-indigo-600">About</a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center px-4 py-10">
+    <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md text-center">
+      <h1 class="text-3xl font-bold text-purple-700 mb-4">Your IQ Test Results</h1>
+      <p id="scoreText" class="text-lg mb-2 text-gray-700">Loading score...</p>
+      <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+        <div id="scoreBar" class="bg-purple-600 h-4 rounded-full transition-all" style="width: 0%"></div>
+      </div>
+      <p id="iqText" class="text-xl font-semibold mb-2 text-indigo-800"></p>
+      <div class="flex flex-col md:flex-row justify-center gap-4 mt-4" id="actionButtons">
+        <!-- Buttons will be inserted here by script -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-600">
+    <p>© 2025 BrainPulseIQ. All rights reserved.</p>
+    <p><a href="mailto:contact@trueiq.com" class="text-indigo-600 hover:underline">contact@brainpulsiq.com</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const container = document.getElementById("actionButtons");
+
+    const retakeBtn = document.createElement("button");
+    retakeBtn.textContent = "Retake Test";
+    retakeBtn.className = "bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition";
+    retakeBtn.onclick = () => window.location.href = "test.html";
+
+    const hasPaid = localStorage.getItem("hasPaid") === "true";
+    const secondBtn = document.createElement("button");
+
+    if (hasPaid) {
+      secondBtn.textContent = "View Full Breakdown";
+      secondBtn.className = "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700";
+      secondBtn.onclick = () => window.location.href = "breakdown.html";
+    } else {
+      secondBtn.textContent = "Unlock Full Breakdown ($4.99)";
+      secondBtn.className = "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600";
+      secondBtn.onclick = () =>
+        window.location.href = "https://buy.stripe.com/test_8x2fZa5v6cPJ3Kybee0x200"; // Replace with your real checkout URL
+    }
+
+    container.appendChild(retakeBtn);
+    container.appendChild(secondBtn);
+
+
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("hidden");
+    });
+
+    function calculateRealIQ(questions, questionTimes) {
+      const categoryToDifficulty = {
+        Verbal: "easy",
+        General: "easy",
+        Math: "medium",
+        Logic: "medium",
+        Pattern: "medium",
+        Visual: "hard"
+      };
+
+      const difficultyWeights = {
+        easy: 1,
+        medium: 2,
+        hard: 3
+      };
+
+      let weightedScore = 0;
+      let correctAnswers = 0;
+
+      for (let i = 0; i < questions.length; i++) {
+        const q = questions[i];
+        const difficulty = categoryToDifficulty[q.category] || "medium";
+        const userAnsweredCorrectly = (q.userAnswer === q.answer);
+
+        if (userAnsweredCorrectly) {
+          weightedScore += difficultyWeights[difficulty];
+          correctAnswers++;
+        }
+      }
+
+      const averageScore = 20;
+      const SD = 5;
+      let iq = 100 + ((weightedScore - averageScore) * (15 / SD));
+
+      const totalTime = questionTimes.reduce((a, b) => a + b, 0);
+      const avgTimePerQ = totalTime / questionTimes.length;
+
+      if (avgTimePerQ < 8) iq += 5;
+      else if (avgTimePerQ > 15) iq -= 5;
+
+      return Math.round(Math.max(60, Math.min(iq, 160)));
+    }
+
+    const score = parseInt(localStorage.getItem("iqScore") || "0");
+    const totalTime = parseInt(localStorage.getItem("totalTimeTaken") || "0");
+    const percent = Math.round((score / 15) * 100);
+
+    const questions = JSON.parse(localStorage.getItem("answeredQuestions") || "[]");
+    const times = JSON.parse(localStorage.getItem("questionTimes") || "[]");
+
+    questions.forEach((q, i) => {
+      q.userAnswer = q.userAnswer ?? q.answer; // temp logic: assume user got it right
+    });
+
+    const realIQ = calculateRealIQ(questions, times);
+    localStorage.setItem("realIQ", realIQ);
+
+    document.getElementById("scoreText").textContent = `You answered ${score} out of 15 correctly.`;
+    document.getElementById("scoreBar").style.width = `${percent}%`;
+    document.getElementById("iqText").textContent = `🎓 Estimated IQ: ${realIQ}`;
+
 <body class="bg-gradient-to-tr from-blue-50 via-white to-purple-100 min-h-screen flex items-center justify-center">
 
   <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md text-center fade-in">
@@ -55,7 +216,9 @@
     } else {
       feedback.textContent = "🔍 Below Average – Keep practicing!";
     }
+
   </script>
 
 </body>
+
 </html>
