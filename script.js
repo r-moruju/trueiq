@@ -330,7 +330,7 @@ const allQuestions = [
     "answer": 1,
     "category": "Math"
   },
-   {
+  {
     "question": "Which shape comes next in the color sequence?",
     "options": [
       "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"red\" /></svg>",
@@ -458,6 +458,7 @@ let score = 0;
 let timer = 30;
 let interval;
 let totalTimeTaken = 0;
+let startTime;
 
 let categoryScores = {
   Math: 0,
@@ -479,6 +480,9 @@ const timerEl = document.getElementById("timer");
 const progressEl = document.getElementById("progress");
 
 function showQuestion() {
+  if (currentQuestion === 0) {
+    startTime = Date.now(); // ✅ Correct place to initialize
+  }
   clearInterval(interval);
   timer = 30;
   timerEl.textContent = `⏱️ ${timer}s`;
@@ -506,21 +510,21 @@ function showQuestion() {
 function checkAnswer(selectedIndex) {
   const current = questions[currentQuestion];
   const categoryToDifficulty = {
-   Verbal: "easy",
-   General: "easy",
-   Math: "medium",
-   Logic: "medium",
-   Pattern: "medium",
-   Visual: "hard"
+    Verbal: "easy",
+    General: "easy",
+    Math: "medium",
+    Logic: "medium",
+    Pattern: "medium",
+    Visual: "hard"
   };
   const difficulty = categoryToDifficulty[current.category] || "medium";
 
   questions[currentQuestion].userAnswer = selectedIndex;
 
   if (selectedIndex === current.answer) {
-   score++;
-   categoryScores[current.category]++;
-   difficultyScores[difficulty]++;
+    score++;
+    categoryScores[current.category]++;
+    difficultyScores[difficulty]++;
   }
   nextQuestion();
 }
@@ -536,11 +540,16 @@ function nextQuestion() {
 }
 
 function finishQuiz() {
+  if (typeof startTime !== "undefined") {
+    const endTime = Date.now();
+    const totalTimeTaken = Math.floor((endTime - startTime) / 1000);
+    localStorage.setItem("totalTimeTaken", totalTimeTaken);
+  }
   localStorage.setItem("iqScore", score);
   localStorage.setItem("categoryScores", JSON.stringify(categoryScores));
-  localStorage.setItem("totalTimeTaken", totalTimeTaken);
   localStorage.setItem("difficultyScores", JSON.stringify(difficultyScores));
   localStorage.setItem("answeredQuestions", JSON.stringify(questions));
+  localStorage.setItem("hasPaid", "false");
   window.location.href = "results.html";
 }
 
