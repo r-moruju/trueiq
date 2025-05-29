@@ -71,12 +71,12 @@
   <!-- Scripts -->
   <script>
     const container = document.getElementById("actionButtons");
-
+   /*
     const retakeBtn = document.createElement("button");
     retakeBtn.textContent = "Retake Test";
     retakeBtn.className = "bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition";
     retakeBtn.onclick = () => window.location.href = "test.html";
-
+   */
     const hasPaid = localStorage.getItem("hasPaid") === "true";
     const secondBtn = document.createElement("button");
 
@@ -85,13 +85,14 @@
       secondBtn.className = "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700";
       secondBtn.onclick = () => window.location.href = "breakdown.html";
     } else {
-      secondBtn.textContent = "Unlock Full Breakdown ($4.99)";
+      secondBtn.textContent = "Breakdown & Certificate ($4.99)";
       secondBtn.className = "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600";
       secondBtn.onclick = () =>
-        window.location.href = "https://buy.stripe.com/eVqcN763LcbIdyr5PxdfG00"; // Replace with your real checkout URL
+        window.location.href = "https://buy.stripe.com/eVqcN763LcbIdyr5PxdfG00"; // live url
+        //window.location.href = "https://buy.stripe.com/test_eVq9AM7Du6tReSW5n34ZG00" //test url
     }
 
-    container.appendChild(retakeBtn);
+    //container.appendChild(retakeBtn);
     container.appendChild(secondBtn);
 
 

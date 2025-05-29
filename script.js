@@ -1,6 +1,72 @@
 
 const allQuestions = [
   {
+    "question": "What is 7 squared?",
+    "options": ["47", "49", "51", "53"],
+    "answer": 1,
+    "category": "Math"
+  },
+  {
+    "question": "What number completes: 1, 3, 6, 10, ?",
+    "options": ["12", "14", "15", "16"],
+    "answer": 2,
+    "category": "Pattern"
+  },
+  {
+    "question": "What is 15 + 28?",
+    "options": ["41", "42", "43", "44"],
+    "answer": 2,
+    "category": "Math"
+  },
+  {
+    "question": "Which is not a primary color?",
+    "options": ["Red", "Blue", "Green", "Yellow"],
+    "answer": 2,
+    "category": "General"
+  },
+  {
+    "question": "Which number is even?",
+    "options": ["13", "17", "22", "25"],
+    "answer": 2,
+    "category": "Math"
+  },
+  {
+    "question": "Which is the synonym of 'fast'?",
+    "options": ["Slow", "Quick", "Lazy", "Small"],
+    "answer": 1,
+    "category": "Verbal"
+  },
+  {
+    "question": "What is half of 64?",
+    "options": ["30", "31", "32", "33"],
+    "answer": 2,
+    "category": "Math"
+  },
+  {
+    "question": "Which comes first alphabetically?",
+    "options": ["Zebra", "Yak", "Ant", "Bee"],
+    "answer": 2,
+    "category": "Verbal"
+  },
+  {
+    "question": "How many legs does a spider have?",
+    "options": ["6", "7", "8", "9"],
+    "answer": 2,
+    "category": "General"
+  },
+  {
+    "question": "What is the next prime after 11?",
+    "options": ["12", "13", "14", "15"],
+    "answer": 1,
+    "category": "Math"
+  },
+  {
+    "question": "Which number is a multiple of 9?",
+    "options": ["27", "28", "29", "30"],
+    "answer": 0,
+    "category": "Math"
+  },
+  {
     "question": "What comes next? 2, 4, 8, 16, ?",
     "options": [
       "20",
