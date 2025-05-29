@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://brainpulseiq.com/sitemap.xml
