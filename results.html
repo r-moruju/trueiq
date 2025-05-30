@@ -56,6 +56,7 @@
         <div id="scoreBar" class="bg-purple-600 h-4 rounded-full transition-all" style="width: 0%"></div>
       </div>
       <p id="iqText" class="text-xl font-semibold mb-2 text-indigo-800"></p>
+      <p id="iqDescription" class="text-md text-gray-700 mt-2"></p>
       <div class="flex flex-col md:flex-row justify-center gap-4 mt-4" id="actionButtons">
         <!-- Buttons will be inserted here by script -->
       </div>
@@ -71,12 +72,12 @@
   <!-- Scripts -->
   <script>
     const container = document.getElementById("actionButtons");
-   /*
-    const retakeBtn = document.createElement("button");
-    retakeBtn.textContent = "Retake Test";
-    retakeBtn.className = "bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition";
-    retakeBtn.onclick = () => window.location.href = "test.html";
-   */
+    /*
+     const retakeBtn = document.createElement("button");
+     retakeBtn.textContent = "Retake Test";
+     retakeBtn.className = "bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition";
+     retakeBtn.onclick = () => window.location.href = "test.html";
+    */
     const hasPaid = localStorage.getItem("hasPaid") === "true";
     const secondBtn = document.createElement("button");
 
@@ -89,7 +90,7 @@
       secondBtn.className = "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600";
       secondBtn.onclick = () =>
         window.location.href = "https://buy.stripe.com/eVqcN763LcbIdyr5PxdfG00"; // live url
-        //window.location.href = "https://buy.stripe.com/test_eVq9AM7Du6tReSW5n34ZG00" //test url
+      //window.location.href = "https://buy.stripe.com/test_eVq9AM7Du6tReSW5n34ZG00" //test url
     }
 
     //container.appendChild(retakeBtn);
@@ -158,9 +159,19 @@
     const realIQ = calculateRealIQ(questions, times);
     localStorage.setItem("realIQ", realIQ);
 
+    function getIQDescription(iq) {
+      if (iq >= 130) return "💡 Very Superior: Highly gifted – you may qualify for high IQ societies.";
+      if (iq >= 120) return "🎯 Superior: You have above average reasoning and logic skills.";
+      if (iq >= 110) return "📘 High Average: Strong problem-solving ability.";
+      if (iq >= 90) return "🧠 Average: You're right in line with most people.";
+      if (iq >= 80) return "⚠️ Low Average: You may find abstract or timed tasks more challenging.";
+      return "🔍 Below Average: May indicate some learning difficulties, but remember – IQ is just one measure!";
+    }
+
     document.getElementById("scoreText").textContent = `You answered ${score} out of 15 correctly.`;
     document.getElementById("scoreBar").style.width = `${percent}%`;
     document.getElementById("iqText").textContent = `🎓 Estimated IQ: ${realIQ}`;
+    document.getElementById("iqDescription").textContent = getIQDescription(realIQ);
   </script>
 </body>
 
