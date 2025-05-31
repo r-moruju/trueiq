@@ -1,3 +1,7 @@
 User-agent: *
 Disallow:
+
+User-agent: facebookexternalhit
+Disallow:
+
 Sitemap: https://brainpulseiq.com/sitemap.xml
