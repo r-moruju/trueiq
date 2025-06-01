@@ -397,11 +397,11 @@ const allQuestions = [
     "category": "Math"
   },
   {
-    "question": "Which shape comes next in the color sequence?",
+    "question": "Which color comes next in the sequence: Red, Orange, Yellow, ...?",
     "options": [
-      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"red\" /></svg>",
-      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"orange\" /></svg>",
-      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"yellow\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"violet\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"blue\" /></svg>",
+      "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"indigo\" /></svg>",
       "<svg width=\"50\" height=\"50\"><rect width=\"50\" height=\"50\" fill=\"green\" /></svg>"
     ],
     "answer": 3,
@@ -560,8 +560,9 @@ function showQuestion() {
 
   q.options.forEach((option, index) => {
     const btn = document.createElement("button");
-    btn.innerHTML = option;
-    btn.className = "bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded m-2 shadow hover:scale-105 transition-all";
+    btn.innerHTML = `<div class="flex justify-center items-center">${option}</div>`;
+    // btn.className = "bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-4 py-2 rounded m-2 shadow hover:scale-105 transition-all";
+    btn.className = "w-full sm:w-auto bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-lg  hover:scale-105 transition-transform duration-200"
     btn.onclick = () => checkAnswer(index);
     optionsEl.appendChild(btn);
   });
