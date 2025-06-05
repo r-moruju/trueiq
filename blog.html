@@ -1,108 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About & Blog – BrainPulseIQ</title>
+  <meta name="description"
+    content="Explore the BrainPulseIQ blog for insights on IQ, brain training, and cognitive science." />
+  <title>BrainPulseIQ Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 text-gray-800">
 
-  <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mt-8">
-    <!-- About Section -->
-    <section class="mb-10">
-      <h1 class="text-3xl font-bold text-gray-900 mb-4">About BrainPulseIQ</h1>
-      <p class="mb-3">BrainPulseIQ offers a fast, free, and fun IQ test experience with instant insights and shareable certificates. Whether you're curious, competitive, or just love brain games, our platform helps you challenge your cognitive skills and track your growth over time.</p>
-      <p>Join thousands of users boosting their brainpower every day — and see how you rank!</p>
-    </section>
+<body class="bg-gray-50 text-gray-900 flex flex-col min-h-screen">
+  <header class="bg-white shadow p-4">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">🧠 BrainPulseIQ Blog</h1>
+      <a href="index.html" class="text-blue-600 hover:underline">Home</a>
+    </div>
+  </header>
 
-    <!-- Blog Post -->
-    <article class="border-t pt-8">
-      <h2 class="text-2xl font-semibold mb-4">🧠 What Your IQ Score Really Says About You</h2>
+  <main class=" flex-grow max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Sample Post Card -->
 
-      <p class="mb-4"><em>What does your IQ score mean?</em> Whether above average or not, it tells you more than just a number. Let’s explore what it really says about your mind.</p>
+    <a href="blog-posts/Famous-High-IQ-People.html"
+      class="bg-white rounded-2xl shadow hover:shadow-lg p-6 transition">
+      <h2 class="text-xl font-semibold mb-2">Famous High-IQ People and What We Can Learn from Them</h2>
+      <p class="text-sm text-gray-500 mb-4">Posted on June 05, 2025 · IQ Trivia</p>
+      <p class="text-gray-700">What do Albert Einstein, Marilyn vos Savant, and Stephen Hawking have in common? Besides shaping...</p>
+    </a>
 
-      <h3 class="text-xl font-semibold mt-6 mb-2">🧪 What Is an IQ Test?</h3>
-      <p class="mb-4">IQ stands for <strong>Intelligence Quotient</strong>. It’s a measure of logic, pattern recognition, and abstract thinking—not your knowledge or creativity.</p>
+    <a href="blog-posts/neuroscience-of-intelligence.html"
+      class="bg-white rounded-2xl shadow hover:shadow-lg p-6 transition">
+      <h2 class="text-xl font-semibold mb-2">🧠 The Neuroscience of Intelligence: How Your Brain Shapes Your IQ</h2>
+      <p class="text-sm text-gray-500 mb-4">Posted on June 02, 2025 · Psychology</p>
+      <p class="text-gray-700">This post explores the fascinating science behind intelligence and the biological foundation of IQ — from gray matter density...</p>
+    </a>
 
-      <h3 class="text-xl font-semibold mt-6 mb-2">📊 IQ Score Ranges</h3>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left border border-gray-300">
-          <thead class="bg-gray-100">
-            <tr>
-              <th class="p-3 border">IQ Range</th>
-              <th class="p-3 border">Category</th>
-              <th class="p-3 border">What It Suggests</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-t">
-              <td class="p-3 border">130+</td>
-              <td class="p-3 border">Very Superior</td>
-              <td class="p-3 border">Highly gifted; qualifies for high IQ societies</td>
-            </tr>
-            <tr>
-              <td class="p-3 border">120–129</td>
-              <td class="p-3 border">Superior</td>
-              <td class="p-3 border">Above average reasoning and logic</td>
-            </tr>
-            <tr>
-              <td class="p-3 border">110–119</td>
-              <td class="p-3 border">High Average</td>
-              <td class="p-3 border">Strong problem-solving ability</td>
-            </tr>
-            <tr>
-              <td class="p-3 border">90–109</td>
-              <td class="p-3 border">Average</td>
-              <td class="p-3 border">Most people fall into this category</td>
-            </tr>
-            <tr>
-              <td class="p-3 border">80–89</td>
-              <td class="p-3 border">Low Average</td>
-              <td class="p-3 border">May struggle with abstract or timed tasks</td>
-            </tr>
-            <tr>
-              <td class="p-3 border">Below 80</td>
-              <td class="p-3 border">Below Average</td>
-              <td class="p-3 border">Might indicate learning difficulties</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <a href="blog-posts/What_is_a_'Real'_IQ_Score.html"
+      class="bg-white rounded-2xl shadow hover:shadow-lg p-6 transition">
+      <h2 class="text-xl font-semibold mb-2">What is a 'Real' IQ Score? Busting the Myths</h2>
+      <p class="text-sm text-gray-500 mb-4">Posted on May 28, 2025 · IQ Tips</p>
+      <p class="text-gray-700">IQ tests are everywhere—but how accurate are they really? Learn what makes a real IQ test
+        and how BrainPulseIQ compares...</p>
+    </a>
 
-      <h3 class="text-xl font-semibold mt-6 mb-2">🧠 Can You Improve Your IQ?</h3>
-      <ul class="list-disc list-inside mb-4 space-y-1">
-        <li>🧩 Solve puzzles and brain teasers</li>
-        <li>📚 Read regularly</li>
-        <li>🧘‍♂️ Practice mindfulness</li>
-        <li>🏃 Exercise—boosts cognitive function</li>
-        <li>💡 Take practice tests to train your brain</li>
-      </ul>
+    <!-- Duplicate or dynamically add more cards -->
+  </main>
 
-      <h3 class="text-xl font-semibold mt-6 mb-2">🧾 Why Get an IQ Certificate?</h3>
-      <p class="mb-4">Taking a free online IQ test like <a href="https://brainpulseiq.com" class="text-blue-600 underline">BrainPulseIQ</a> gives you:</p>
-      <ul class="list-disc list-inside mb-4 space-y-1">
-        <li>📈 A shareable certificate</li>
-        <li>🧠 Insights into logic and memory</li>
-        <li>🏆 Motivation to improve over time</li>
-      </ul>
-
-      <h3 class="text-xl font-semibold mt-6 mb-2">🔄 Want to Compare Your Score?</h3>
-      <p class="mb-2">Use your results to:</p>
-      <ul class="list-disc list-inside mb-4 space-y-1">
-        <li>Challenge friends or classmates</li>
-        <li>Apply to high-IQ communities</li>
-        <li>Track brain performance growth</li>
-      </ul>
-
-      <p class="mb-6 font-semibold">
-        👉 <a href="https://brainpulseiq.com" class="text-blue-600 underline">Take the free test now</a>
-      </p>
-
-      <h3 class="text-xl font-semibold mt-6 mb-2">📣 Final Thoughts</h3>
-      <p>Your IQ score is just the beginning. Keep growing, stay curious, and challenge yourself regularly!</p>
-    </article>
-  </div>
-
+  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-600">
+    <p>© 2025 BrainPulseIQ. All rights reserved.</p>
+    <p><a href="mailto:contact@brainpulseiq.com" class="text-indigo-600 hover:underline">contact@brainpulsiq.com</a></p>
+  </footer>
 </body>
+
 </html>
